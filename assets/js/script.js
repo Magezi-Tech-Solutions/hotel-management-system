@@ -64,23 +64,9 @@ function openDropdown(event, dropdownID) {
   document.getElementById(dropdownID).classList.toggle("block");
 }
 
-// Alerts
-function closeAlert(event) {
-  let element = event.target;
-  while (element.nodeName !== "BUTTON") {
-    element = element.parentNode;
-  }
-  element.parentNode.parentNode.removeChild(element.parentNode);
-}
 
 
-// modal
-function toggleModal(modalID) {
-  document.getElementById(modalID).classList.toggle("hidden");
-  document.getElementById(modalID + "-backdrop").classList.toggle("hidden");
-  // document.getElementById(modalID).classList.toggle("flex");
-  document.getElementById(modalID + "-backdrop").classList.toggle("flex");
-}
+
 
 // tabpane Nav
 function changeAtiveTab(event, wrapperID, color, tabID) {
@@ -210,67 +196,7 @@ function toggleNavbar(collapseID, cID, sID) {
   document.getElementById(sID).classList.toggle("block");
 }
 
-/*---------------------------------------------------------------------
-              LoaderInit
------------------------------------------------------------------------*/
 
-const loaderInit = () => {
-  const loader = document.querySelector('.loader')
-  setTimeout(() => {
-    loader.classList.add('hidden')
-  }, 200)
-}
-
-document.addEventListener('DOMContentLoaded', (event) => {
-  loaderInit()
-})
-
-// nouiSlider
-
-const rangeSlider = document.querySelectorAll('.range-slider');
-
-Array.from(rangeSlider, (elem) => {
-  if (typeof noUiSlider !== typeof undefined) {
-    noUiSlider.create(elem, {
-      start: [20, 80],
-      connect: true,
-      range: {
-        'min': 0,
-        'max': 100
-      }
-    })
-  }
-})
-
-const slider = document.querySelectorAll('.slider');
-
-Array.from(slider, (elem) => {
-  if (typeof noUiSlider !== typeof undefined) {
-    noUiSlider.create(elem, {
-      start: 50,
-      connect: [true, false],
-      range: {
-        'min': 0,
-        'max': 100
-      }
-    })
-  }
-})
-
-// vanillaDatepicker
-
-const datepickers = document.querySelectorAll('.vanila-datepicker')
-Array.from(datepickers, (elem) => {
-  if (typeof Datepicker !== typeof undefined) {
-    new Datepicker(elem)
-  }
-})
-const daterangePickers = document.querySelectorAll('.vanila-daterangepicker')
-Array.from(daterangePickers, (elem) => {
-  if (typeof Datepicker !== typeof undefined) {
-    new DateRangePicker(elem)
-  }
-})
 // scrollbar
 let Scrollbar
 if (typeof Scrollbar !== typeof null) {
@@ -283,52 +209,8 @@ if (typeof Scrollbar !== typeof null) {
   }
 }
 
-/*---------------------------------------------------------------------
-Circle Progress
------------------------------------------------------------------------*/
-
-const progressBar = document.getElementsByClassName('circle-progress')
-if (typeof progressBar !== typeof undefined) {
-  Array.from(progressBar, (elem) => {
-    const minValue = elem.getAttribute('data-min-value')
-    const maxValue = elem.getAttribute('data-max-value')
-    const value = elem.getAttribute('data-value')
-    const type = elem.getAttribute('data-type')
-    if (elem.getAttribute('id') !== '' && elem.getAttribute('id') !== null) {
-      new CircleProgress('#' + elem.getAttribute('id'), {
-        min: minValue,
-        max: maxValue,
-        value: value,
-        textFormat: type,
-      });
-    }
-  })
-}
 
 
-
-/*---------------------------------------------------------------------
-              CounterUp 2
------------------------------------------------------------------------*/
-if (window.counterUp !== undefined) {
-  const counterUp = window.counterUp["default"];
-  const counterUp2 = document.querySelectorAll('.counter')
-  Array.from(counterUp2, (el) => {
-    if (typeof Waypoint !== typeof undefined) {
-      const waypoint = new Waypoint({
-        element: el,
-        handler: function () {
-          counterUp(el, {
-            duration: 1000,
-            delay: 10,
-          });
-          this.destroy();
-        },
-        offset: "bottom-in-view",
-      });
-    }
-  })
-}
 
 
 /*------------------------
@@ -357,16 +239,7 @@ scrollspy
 --------------------------*/
 
 
-// function scrollToReveal() {
-//   return {
-//     sticky: false,
-//     lastPos: window.scrollY + 0,
-//     scroll() {
-//       this.sticky = window.scrollY > this.$refs.navbar.offsetHeight && this.lastPos > window.scrollY;
-//       this.lastPos = window.scrollY;
-//     }
-//   }
-// }
+
 window.addEventListener('DOMContentLoaded', () => {
 
   const observer = new IntersectionObserver(entries => {
@@ -393,95 +266,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
 });
 
-// carousel
-var swiper = new Swiper('.mySwiper', {
-  spaceBetween: 30,
-  centeredSlides: true,
-  autoplay: {
-    delay: 2500,
-    disableOnInteraction: false,
-  },
-  pagination: {
-    el: '.swiper-pagination',
-    clickable: true,
-  },
-  navigation: {
-    nextEl: '.swiper-button-next',
-    prevEl: '.swiper-button-prev',
-  },
-});
 
-
-// leaflet map
-const elem = document.getElementById('map')
-// Initialize the map
-if (elem) {
-  const map = L.map(elem)
-
-  // Get the tile layer from OpenStreetMaps
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-
-    // Specify the maximum zoom of the map
-    maxZoom: 19,
-  }).addTo(map);
-
-  // Set the view of the map
-  // with the latitude, longitude and the zoom value
-  map.setView([48.8584, 2.2945], 16);
-
-  // Set the map view to the user's location
-  // Uncomment below to set map according to user location
-  // map.locate({setView: true, maxZoom: 16});
-
-  // Show a market at the position of the Eiffel Tower
-  let eiffelMarker = L.marker([48.8584, 2.2945]).addTo(map);
-
-  // Bind popup to the marker with a popup
-  eiffelMarker.bindPopup("Eiffel Tower").openPopup();
-
-
-}
-
-/*---------------------------------------------------------------------
-Flatpickr
------------------------------------------------------------------------*/
-const date_flatpickr = document.querySelectorAll('.date_flatpicker')
-Array.from(date_flatpickr, (elem) => {
-  console.log(elem, flatpickr);
-  if (typeof flatpickr !== typeof undefined) {
-    flatpickr(elem, {
-      minDate: "today",
-      dateFormat: "Y-m-d",
-    })
-  }
-})
-
-/*---------------------------------------------------------------------
-Range Flatpickr
------------------------------------------------------------------------*/
-const range_flatpicker = document.querySelectorAll('.range_flatpicker')
-Array.from(range_flatpicker, (elem) => {
-  if (typeof flatpickr !== typeof undefined) {
-    flatpickr(elem, {
-      mode: "range",
-      minDate: "today",
-      dateFormat: "Y-m-d",
-    })
-  }
-})
-/*---------------------------------------------------------------------
-Inline Flatpickr
------------------------------------------------------------------------*/
-const inline_flatpickr = document.querySelectorAll('.inline_flatpickr')
-Array.from(inline_flatpickr, (elem) => {
-  if (typeof flatpickr !== typeof undefined) {
-    flatpickr(elem, {
-      inline: true,
-      minDate: "today",
-      dateFormat: "Y-m-d",
-    })
-  }
-})
 
 
 function openNav() {
@@ -516,30 +301,7 @@ function autoMode(click_id) {
   }
 }
 
-function Direction(dir_id) {
-  if (dir_id == "ltr") {
-    const html = document.querySelector("html");
-    // html.removeAttribute('dir','rtl');
-    html.setAttribute('dir', 'ltr');
-  }
-  else {
-    const html = document.querySelector("html");
-    // html.removeAttribute('dir','ltr');
-    html.setAttribute('dir', 'rtl');
-  }
-}
-// function black() {
-//   document.getElementById('sid').style.backgroundColor = "black";
-//   document.getElementById('sid1').style.color = "white";
-// }
 
-// function blue() {
-//   document.getElementById('sid').style.backgroundColor = "#4e68ea";
-// }
-
-// function white() {
-//   document.getElementById('sid').style.backgroundColor = "white";
-// }
 
 function transparent() {
   document.getElementById('sid').style.backgroundColor = "transparent";
