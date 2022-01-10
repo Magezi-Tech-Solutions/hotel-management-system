@@ -1,0 +1,1170 @@
+<!doctype html>
+<html lang="en" class="" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Edit Admin</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="../assets/images/logo.png" />
+	<script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../assets/css/style.css">
+
+
+</head>
+
+<body class="bg-body overflow-x-hidden dark:bg-dark-bg">
+
+    <div>
+        <aside x-data="{ open: false }" x-bind:class="open ? 'sidebar sidebar-mini' : 'sidebar'" class="dark:bg-dark-card bg-white">
+            <div class="relative flex items-center justify-start mb-3 border-b dark:border-gray-700">
+                <a href="index.html" class="flex px-5 py-4 mr-4 rtl:ml-4 rtl:mr-0 text-xl whitespace-nowraps ">
+                    <img src="../assets/images/logo.png" style="width: 100px;">
+                    
+                </a>
+                <div class="sidearrow absolute p-1 text-white bg-blue-500 shadow-md xl:-right-3 right-4 top-5 rounded-2xl" x-on:click="open = ! open" data-toggle="sidebar" data-active="true">
+                    <i class="flex" x-bind:style="open ? 'transform:  rotate(180deg)' : ''">
+                        <svg width="20" viewBox="0 0 24 24" class="rtl:rotate-180" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M4.25 12.2744L19.25 12.2744" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                            <path d="M10.2998 18.2988L4.2498 12.2748L10.2998 6.24976" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                    </i>
+                </div>
+            </div>
+            <div class="sidebar-body data-scrollbar">
+                <ul class="iq-main-menu dark:bg-dark-card" x-data="sidebar">
+                    <li class="relative mt-1">
+                        <a class="flex items-center px-4 py-2 rounded " href="#" tabindex="-1">
+                            <span class="default-icon text-gray-500 dark:text-white">Home</span>
+                            <span class="mini-icon">-</span>
+                        </a>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="nav-link active bg-blue-500 text-white shadow-active transition-all cursor-pointer" aria-current="page" href="index.html">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M16.0756 2H19.4616C20.8639 2 22.0001 3.14585 22.0001 4.55996V7.97452C22.0001 9.38864 20.8639 10.5345 19.4616 10.5345H16.0756C14.6734 10.5345 13.5371 9.38864 13.5371 7.97452V4.55996C13.5371 3.14585 14.6734 2 16.0756 2Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4.53852 2H7.92449C9.32676 2 10.463 3.14585 10.463 4.55996V7.97452C10.463 9.38864 9.32676 10.5345 7.92449 10.5345H4.53852C3.13626 10.5345 2 9.38864 2 7.97452V4.55996C2 3.14585 3.13626 2 4.53852 2ZM4.53852 13.4655H7.92449C9.32676 13.4655 10.463 14.6114 10.463 16.0255V19.44C10.463 20.8532 9.32676 22 7.92449 22H4.53852C3.13626 22 2 20.8532 2 19.44V16.0255C2 14.6114 3.13626 13.4655 4.53852 13.4655ZM19.4615 13.4655H16.0755C14.6732 13.4655 13.537 14.6114 13.537 16.0255V19.44C13.537 20.8532 14.6732 22 16.0755 22H19.4615C20.8637 22 22 20.8532 22 19.44V16.0255C22 14.6114 20.8637 13.4655 19.4615 13.4655Z" fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Dashboard</span>
+                        </a>
+                    </li>
+                   <li>
+<!--                        <hr class="hr-horizontal dark:border-gray-700">-->
+                    </li>
+                    <li class="relative mt-1">
+                        <a class="flex items-center px-4 py-2 rounded" href="#" tabindex="-1">
+                            <span class="default-icon text-gray-500 dark:text-white">Admin</span>
+                            <span class="mini-icon">-</span>
+                        </a>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="flex items-center px-4 py-2 rounded transition-all cursor-pointer dark:text-gray-600" :class="selected == 2 ? 'bg-blue-500 dark:text-white text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(2)">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M13.3051 5.88243V6.06547C12.8144 6.05584 12.3237 6.05584 11.8331 6.05584V5.89206C11.8331 5.22733 11.2737 4.68784 10.6064 4.68784H9.63482C8.52589 4.68784 7.62305 3.80152 7.62305 2.72254C7.62305 2.32755 7.95671 2 8.35906 2C8.77123 2 9.09508 2.32755 9.09508 2.72254C9.09508 3.01155 9.34042 3.24276 9.63482 3.24276H10.6064C12.0882 3.2524 13.2953 4.43736 13.3051 5.88243Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M15.164 6.08279C15.4791 6.08712 15.7949 6.09145 16.1119 6.09469C19.5172 6.09469 22 8.52241 22 11.875V16.1813C22 19.5339 19.5172 21.9616 16.1119 21.9616C14.7478 21.9905 13.3837 22.0001 12.0098 22.0001C10.6359 22.0001 9.25221 21.9905 7.88813 21.9616C4.48283 21.9616 2 19.5339 2 16.1813V11.875C2 8.52241 4.48283 6.09469 7.89794 6.09469C9.18351 6.07542 10.4985 6.05615 11.8332 6.05615C12.3238 6.05615 12.8145 6.05615 13.3052 6.06579C13.9238 6.06579 14.5425 6.07427 15.164 6.08279ZM10.8518 14.7459H9.82139V15.767C9.82139 16.162 9.48773 16.4896 9.08538 16.4896C8.67321 16.4896 8.34936 16.162 8.34936 15.767V14.7459H7.30913C6.90677 14.7459 6.57311 14.4279 6.57311 14.0233C6.57311 13.6283 6.90677 13.3008 7.30913 13.3008H8.34936V12.2892C8.34936 11.8942 8.67321 11.5667 9.08538 11.5667C9.48773 11.5667 9.82139 11.8942 9.82139 12.2892V13.3008H10.8518C11.2542 13.3008 11.5878 13.6283 11.5878 14.0233C11.5878 14.4279 11.2542 14.7459 10.8518 14.7459ZM15.0226 13.1177H15.1207C15.5231 13.1177 15.8567 12.7998 15.8567 12.3952C15.8567 12.0002 15.5231 11.6727 15.1207 11.6727H15.0226C14.6104 11.6727 14.2866 12.0002 14.2866 12.3952C14.2866 12.7998 14.6104 13.1177 15.0226 13.1177ZM16.8007 16.4318H16.7988C17.2012 16.4318 17.5348 16.1139 17.5348 15.7092C17.5348 15.3143 17.2012 14.9867 16.7988 14.9867H16.8007C16.2885 14.9867 15.9647 15.3143 15.9647 15.7092C15.9647 16.1139 16.2885 16.4318 16.8007 16.4318Z" fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Bookings</span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 2 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-special" x-ref="container2" x-bind:style="selected == 2 ? 'max-height: ' + $refs.container2.scrollHeight + 'px' : ''">
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="2" href="singleroom.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> S </i>
+                                    <span class="item-name rtl:pr-4">Single Room</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="2" href="doubleroom.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> D </i>
+                                    <span class="item-name rtl:pr-4">Double Room</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="2" href="trippleroom.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> T </i>
+                                    <span class="item-name rtl:pr-4">Tripple Room</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="2" href="luxuryroom.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> L </i>
+                                    <span class="item-name rtl:pr-4">Luxury Room</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="2" href="honeymoonroom.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> H </i>
+                                    <span class="item-name rtl:pr-4">Honey Moon Room</span>
+                                </a>
+                            </li>
+                       </ul>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 3 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(3)">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M12.0865 22C11.9627 22 11.8388 21.9716 11.7271 21.9137L8.12599 20.0496C7.10415 19.5201 6.30481 18.9259 5.68063 18.2336C4.31449 16.7195 3.5544 14.776 3.54232 12.7599L3.50004 6.12426C3.495 5.35842 3.98931 4.67103 4.72826 4.41215L11.3405 2.10679C11.7331 1.96656 12.1711 1.9646 12.5707 2.09992L19.2081 4.32684C19.9511 4.57493 20.4535 5.25742 20.4575 6.02228L20.4998 12.6628C20.5129 14.676 19.779 16.6274 18.434 18.1581C17.8168 18.8602 17.0245 19.4632 16.0128 20.0025L12.4439 21.9088C12.3331 21.9686 12.2103 21.999 12.0865 22Z" fill="currentColor"></path>
+                                    <path d="M11.3194 14.3209C11.1261 14.3219 10.9328 14.2523 10.7838 14.1091L8.86695 12.2656C8.57097 11.9793 8.56795 11.5145 8.86091 11.2262C9.15387 10.9369 9.63207 10.934 9.92906 11.2193L11.3083 12.5451L14.6758 9.22479C14.9698 8.93552 15.448 8.93258 15.744 9.21793C16.041 9.50426 16.044 9.98004 15.751 10.2574L11.8519 14.1022C11.7049 14.2474 11.5127 14.3199 11.3194 14.3209Z" fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Guests</span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 3 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-auth" x-ref="container3" x-bind:style="selected == 3 ? 'max-height: ' + $refs.container3.scrollHeight + 'px' : ''">
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="3" href="adults.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> A </i>
+                                    <span class="item-name rtl:pr-4">Adults</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="3" href="children.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> C </i>
+                                    <span class="item-name rtl:pr-4">Children</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="3" href="vip.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> V </i>
+                                    <span class="item-name rtl:pr-4">Vip's</span>
+                                </a>
+                            </li>
+                      </ul>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 4 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(4)">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M11.9488 14.54C8.49884 14.54 5.58789 15.1038 5.58789 17.2795C5.58789 19.4562 8.51765 20.0001 11.9488 20.0001C15.3988 20.0001 18.3098 19.4364 18.3098 17.2606C18.3098 15.084 15.38 14.54 11.9488 14.54Z" fill="currentColor"></path>
+                                    <path opacity="0.4" d="M11.949 12.467C14.2851 12.467 16.1583 10.5831 16.1583 8.23351C16.1583 5.88306 14.2851 4 11.949 4C9.61293 4 7.73975 5.88306 7.73975 8.23351C7.73975 10.5831 9.61293 12.467 11.949 12.467Z" fill="currentColor"></path>
+                                    <path opacity="0.4" d="M21.0881 9.21923C21.6925 6.84176 19.9205 4.70654 17.664 4.70654C17.4187 4.70654 17.1841 4.73356 16.9549 4.77949C16.9244 4.78669 16.8904 4.802 16.8725 4.82902C16.8519 4.86324 16.8671 4.90917 16.8895 4.93889C17.5673 5.89528 17.9568 7.0597 17.9568 8.30967C17.9568 9.50741 17.5996 10.6241 16.9728 11.5508C16.9083 11.6462 16.9656 11.775 17.0793 11.7948C17.2369 11.8227 17.3981 11.8371 17.5629 11.8416C19.2059 11.8849 20.6807 10.8213 21.0881 9.21923Z" fill="currentColor"></path>
+                                    <path d="M22.8094 14.817C22.5086 14.1722 21.7824 13.73 20.6783 13.513C20.1572 13.3851 18.747 13.205 17.4352 13.2293C17.4155 13.232 17.4048 13.2455 17.403 13.2545C17.4003 13.2671 17.4057 13.2887 17.4316 13.3022C18.0378 13.6039 20.3811 14.916 20.0865 17.6834C20.074 17.8032 20.1698 17.9068 20.2888 17.8888C20.8655 17.8059 22.3492 17.4853 22.8094 16.4866C23.0637 15.9589 23.0637 15.3456 22.8094 14.817Z" fill="currentColor"></path>
+                                    <path opacity="0.4" d="M7.04459 4.77973C6.81626 4.7329 6.58077 4.70679 6.33543 4.70679C4.07901 4.70679 2.30701 6.84201 2.9123 9.21947C3.31882 10.8216 4.79355 11.8851 6.43661 11.8419C6.60136 11.8374 6.76343 11.8221 6.92013 11.7951C7.03384 11.7753 7.09115 11.6465 7.02668 11.551C6.3999 10.6234 6.04263 9.50765 6.04263 8.30991C6.04263 7.05904 6.43303 5.89462 7.11085 4.93913C7.13234 4.90941 7.14845 4.86348 7.12696 4.82926C7.10906 4.80135 7.07593 4.78694 7.04459 4.77973Z" fill="currentColor"></path>
+                                    <path d="M3.32156 13.5127C2.21752 13.7297 1.49225 14.1719 1.19139 14.8167C0.936203 15.3453 0.936203 15.9586 1.19139 16.4872C1.65163 17.4851 3.13531 17.8066 3.71195 17.8885C3.83104 17.9065 3.92595 17.8038 3.91342 17.6832C3.61883 14.9167 5.9621 13.6046 6.56918 13.3029C6.59425 13.2885 6.59962 13.2677 6.59694 13.2542C6.59515 13.2452 6.5853 13.2317 6.5656 13.2299C5.25294 13.2047 3.84358 13.3848 3.32156 13.5127Z" fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Reports</span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 4 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-user" data-bs-parent="#sidebar-menu" x-ref="container4" x-bind:style="selected == 4 ? 'max-height: ' + $refs.container4.scrollHeight + 'px' : ''">
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="4" href="bookingreports.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> B </i>
+                                    <span class="item-name rtl:pr-4">Booking Reports</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="4" href="bookingreports.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> P </i>
+                                    <span class="item-name rtl:pr-4">Purchase Reports</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="4" href="bookingreports.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> S </i>
+                                    <span class="item-name rtl:pr-4">Stock Reports</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 5 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(5)">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M11.9912 18.6215L5.49945 21.864C5.00921 22.1302 4.39768 21.9525 4.12348 21.4643C4.0434 21.3108 4.00106 21.1402 4 20.9668V13.7087C4 14.4283 4.40573 14.8725 5.47299 15.37L11.9912 18.6215Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.89526 2H15.0695C17.7773 2 19.9735 3.06605 20 5.79337V20.9668C19.9989 21.1374 19.9565 21.3051 19.8765 21.4554C19.7479 21.8007 19.5259 21.8827 19.2615 21.9598C18.997 22.0368 18.7128 22.0023 18.4741 21.8641L11.9912 18.6215L5.47299 15.3701C4.40573 14.8726 4 14.4284 4 13.7088V5.79337C4 3.06605 6.19625 2 8.89526 2ZM8.22492 9.62227H15.7486C16.1822 9.62227 16.5336 9.26828 16.5336 8.83162C16.5336 8.39495 16.1822 8.04096 15.7486 8.04096H8.22492C7.79137 8.04096 7.43991 8.39495 7.43991 8.83162C7.43991 9.26828 7.79137 9.62227 8.22492 9.62227Z" fill="currentColor"></path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">HR Management</span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 5 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="utilities-error" x-ref="container5" x-bind:style="selected == 5 ? 'max-height: ' + $refs.container5.scrollHeight + 'px' : ''">
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="employees.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Employees</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="departments.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Departments</span>
+                                </a>
+                            </li>
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="designation.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Designations</span>
+                                </a>
+                            </li>
+							  <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="employees.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Attendance</span>
+                                </a>
+                            </li>
+							  <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="recruitment.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Recruitment</span>
+                                </a>
+                            </li>
+							  <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="payroll.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Payroll</span>
+                                </a>
+                            </li>
+							  <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="onleave.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">On Leave</span>
+                                </a>
+                            </li>
+							  <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="5" href="loan.html">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <span class="item-name rtl:pr-4">Loan</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+<!--                        <hr class="hr-horizontal dark:border-gray-100">-->
+                    </li>
+                    <li class="relative mt-1">
+                        <a class="flex items-center px-4 py-2 rounded" href="#" tabindex="-1">
+                            <span class="default-icon text-gray-500 dark:text-white">Customize Website</span>
+                            <span class="mini-icon">-</span>
+                        </a>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" href="#">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M2 11.0786C2.05 13.4166 2.19 17.4156 2.21 17.8566C2.281 18.7996 2.642 19.7526 3.204 20.4246C3.986 21.3676 4.949 21.7886 6.292 21.7886C8.148 21.7986 10.194 21.7986 12.181 21.7986C14.176 21.7986 16.112 21.7986 17.747 21.7886C19.071 21.7886 20.064 21.3566 20.836 20.4246C21.398 19.7526 21.759 18.7896 21.81 17.8566C21.83 17.4856 21.93 13.1446 21.99 11.0786H2Z" fill="currentColor"></path>
+                                    <path d="M11.2451 15.3843V16.6783C11.2451 17.0923 11.5811 17.4283 11.9951 17.4283C12.4091 17.4283 12.7451 17.0923 12.7451 16.6783V15.3843C12.7451 14.9703 12.4091 14.6343 11.9951 14.6343C11.5811 14.6343 11.2451 14.9703 11.2451 15.3843Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.211 14.5565C10.111 14.9195 9.762 15.1515 9.384 15.1015C6.833 14.7455 4.395 13.8405 2.337 12.4815C2.126 12.3435 2 12.1075 2 11.8555V8.38949C2 6.28949 3.712 4.58149 5.817 4.58149H7.784C7.972 3.12949 9.202 2.00049 10.704 2.00049H13.286C14.787 2.00049 16.018 3.12949 16.206 4.58149H18.183C20.282 4.58149 21.99 6.28949 21.99 8.38949V11.8555C21.99 12.1075 21.863 12.3425 21.654 12.4815C19.592 13.8465 17.144 14.7555 14.576 15.1105C14.541 15.1155 14.507 15.1175 14.473 15.1175C14.134 15.1175 13.831 14.8885 13.746 14.5525C13.544 13.7565 12.821 13.1995 11.99 13.1995C11.148 13.1995 10.433 13.7445 10.211 14.5565ZM13.286 3.50049H10.704C10.031 3.50049 9.469 3.96049 9.301 4.58149H14.688C14.52 3.96049 13.958 3.50049 13.286 3.50049Z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Hotel Info</span>
+                        </a>
+                    </li>
+					 <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" href="#">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M2 11.0786C2.05 13.4166 2.19 17.4156 2.21 17.8566C2.281 18.7996 2.642 19.7526 3.204 20.4246C3.986 21.3676 4.949 21.7886 6.292 21.7886C8.148 21.7986 10.194 21.7986 12.181 21.7986C14.176 21.7986 16.112 21.7986 17.747 21.7886C19.071 21.7886 20.064 21.3566 20.836 20.4246C21.398 19.7526 21.759 18.7896 21.81 17.8566C21.83 17.4856 21.93 13.1446 21.99 11.0786H2Z" fill="currentColor"></path>
+                                    <path d="M11.2451 15.3843V16.6783C11.2451 17.0923 11.5811 17.4283 11.9951 17.4283C12.4091 17.4283 12.7451 17.0923 12.7451 16.6783V15.3843C12.7451 14.9703 12.4091 14.6343 11.9951 14.6343C11.5811 14.6343 11.2451 14.9703 11.2451 15.3843Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.211 14.5565C10.111 14.9195 9.762 15.1515 9.384 15.1015C6.833 14.7455 4.395 13.8405 2.337 12.4815C2.126 12.3435 2 12.1075 2 11.8555V8.38949C2 6.28949 3.712 4.58149 5.817 4.58149H7.784C7.972 3.12949 9.202 2.00049 10.704 2.00049H13.286C14.787 2.00049 16.018 3.12949 16.206 4.58149H18.183C20.282 4.58149 21.99 6.28949 21.99 8.38949V11.8555C21.99 12.1075 21.863 12.3425 21.654 12.4815C19.592 13.8465 17.144 14.7555 14.576 15.1105C14.541 15.1155 14.507 15.1175 14.473 15.1175C14.134 15.1175 13.831 14.8885 13.746 14.5525C13.544 13.7565 12.821 13.1995 11.99 13.1995C11.148 13.1995 10.433 13.7445 10.211 14.5565ZM13.286 3.50049H10.704C10.031 3.50049 9.469 3.96049 9.301 4.58149H14.688C14.52 3.96049 13.958 3.50049 13.286 3.50049Z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Hotel Header</span>
+                        </a>
+                    </li>
+					 <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" href="#">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M2 11.0786C2.05 13.4166 2.19 17.4156 2.21 17.8566C2.281 18.7996 2.642 19.7526 3.204 20.4246C3.986 21.3676 4.949 21.7886 6.292 21.7886C8.148 21.7986 10.194 21.7986 12.181 21.7986C14.176 21.7986 16.112 21.7986 17.747 21.7886C19.071 21.7886 20.064 21.3566 20.836 20.4246C21.398 19.7526 21.759 18.7896 21.81 17.8566C21.83 17.4856 21.93 13.1446 21.99 11.0786H2Z" fill="currentColor"></path>
+                                    <path d="M11.2451 15.3843V16.6783C11.2451 17.0923 11.5811 17.4283 11.9951 17.4283C12.4091 17.4283 12.7451 17.0923 12.7451 16.6783V15.3843C12.7451 14.9703 12.4091 14.6343 11.9951 14.6343C11.5811 14.6343 11.2451 14.9703 11.2451 15.3843Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.211 14.5565C10.111 14.9195 9.762 15.1515 9.384 15.1015C6.833 14.7455 4.395 13.8405 2.337 12.4815C2.126 12.3435 2 12.1075 2 11.8555V8.38949C2 6.28949 3.712 4.58149 5.817 4.58149H7.784C7.972 3.12949 9.202 2.00049 10.704 2.00049H13.286C14.787 2.00049 16.018 3.12949 16.206 4.58149H18.183C20.282 4.58149 21.99 6.28949 21.99 8.38949V11.8555C21.99 12.1075 21.863 12.3425 21.654 12.4815C19.592 13.8465 17.144 14.7555 14.576 15.1105C14.541 15.1155 14.507 15.1175 14.473 15.1175C14.134 15.1175 13.831 14.8885 13.746 14.5525C13.544 13.7565 12.821 13.1995 11.99 13.1995C11.148 13.1995 10.433 13.7445 10.211 14.5565ZM13.286 3.50049H10.704C10.031 3.50049 9.469 3.96049 9.301 4.58149H14.688C14.52 3.96049 13.958 3.50049 13.286 3.50049Z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Blogs</span>
+                        </a>
+                    </li>
+						 <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" href="#">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.4" d="M2 11.0786C2.05 13.4166 2.19 17.4156 2.21 17.8566C2.281 18.7996 2.642 19.7526 3.204 20.4246C3.986 21.3676 4.949 21.7886 6.292 21.7886C8.148 21.7986 10.194 21.7986 12.181 21.7986C14.176 21.7986 16.112 21.7986 17.747 21.7886C19.071 21.7886 20.064 21.3566 20.836 20.4246C21.398 19.7526 21.759 18.7896 21.81 17.8566C21.83 17.4856 21.93 13.1446 21.99 11.0786H2Z" fill="currentColor"></path>
+                                    <path d="M11.2451 15.3843V16.6783C11.2451 17.0923 11.5811 17.4283 11.9951 17.4283C12.4091 17.4283 12.7451 17.0923 12.7451 16.6783V15.3843C12.7451 14.9703 12.4091 14.6343 11.9951 14.6343C11.5811 14.6343 11.2451 14.9703 11.2451 15.3843Z" fill="currentColor"></path>
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M10.211 14.5565C10.111 14.9195 9.762 15.1515 9.384 15.1015C6.833 14.7455 4.395 13.8405 2.337 12.4815C2.126 12.3435 2 12.1075 2 11.8555V8.38949C2 6.28949 3.712 4.58149 5.817 4.58149H7.784C7.972 3.12949 9.202 2.00049 10.704 2.00049H13.286C14.787 2.00049 16.018 3.12949 16.206 4.58149H18.183C20.282 4.58149 21.99 6.28949 21.99 8.38949V11.8555C21.99 12.1075 21.863 12.3425 21.654 12.4815C19.592 13.8465 17.144 14.7555 14.576 15.1105C14.541 15.1155 14.507 15.1175 14.473 15.1175C14.134 15.1175 13.831 14.8885 13.746 14.5525C13.544 13.7565 12.821 13.1995 11.99 13.1995C11.148 13.1995 10.433 13.7445 10.211 14.5565ZM13.286 3.50049H10.704C10.031 3.50049 9.469 3.96049 9.301 4.58149H14.688C14.52 3.96049 13.958 3.50049 13.286 3.50049Z" fill="currentColor">
+                                    </path>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Pricing</span>
+                        </a>
+                    </li>
+                   
+                   <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 7 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(7)">
+                            <i class="icon">
+                                <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M8.53162 2.93677C10.7165 1.66727 13.402 1.68946 15.5664 2.99489C17.7095 4.32691 19.012 6.70418 18.9998 9.26144C18.95 11.8019 17.5533 14.19 15.8075 16.0361C14.7998 17.1064 13.6726 18.0528 12.4488 18.856C12.3228 18.9289 12.1848 18.9777 12.0415 19C11.9036 18.9941 11.7693 18.9534 11.6508 18.8814C9.78243 17.6746 8.14334 16.134 6.81233 14.334C5.69859 12.8314 5.06584 11.016 5 9.13442C4.99856 6.57225 6.34677 4.20627 8.53162 2.93677ZM9.79416 10.1948C10.1617 11.1008 11.0292 11.6918 11.9916 11.6918C12.6221 11.6964 13.2282 11.4438 13.6748 10.9905C14.1214 10.5371 14.3715 9.92064 14.3692 9.27838C14.3726 8.29804 13.7955 7.41231 12.9073 7.03477C12.0191 6.65723 10.995 6.86235 10.3133 7.55435C9.63159 8.24635 9.42664 9.28872 9.79416 10.1948Z" fill="currentColor"></path>
+                                    <ellipse opacity="0.4" cx="12" cy="21" rx="5" ry="1" fill="currentColor"></ellipse>
+                                </svg>
+                            </i>
+                            <span class="item-name rtl:pr-4">Contact</span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 7 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-maps" x-ref="container7" x-bind:style="selected == 7 ? 'max-height: ' + $refs.container7.scrollHeight + 'px' : ''">
+                            <li class="iq-sidebar">
+                                <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800 transition-all cursor-pointer" data-sidebar-parent="7" href="#">
+                                    <i class="icon">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="10" viewBox="0 0 24 24" fill="currentColor">
+                                            <g>
+                                                <circle cx="12" cy="12" r="8" fill="currentColor"></circle>
+                                            </g>
+                                        </svg>
+                                    </i>
+                                    <i class="hidden opacity-0"> D </i>
+                                    <span class="item-name rtl:pr-4">Details</span>
+                                </a>
+                            </li>
+                       </ul>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 8 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(8)">
+                          
+                            <span class="item-name rtl:pr-4"></span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 8 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-form" x-ref="container8" x-bind:style="selected == 8 ? 'max-height: ' + $refs.container8.scrollHeight + 'px' : ''">
+                        </ul>
+                    </li>
+                    <li class="iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 9 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(9)">
+                         
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 9 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-table" x-ref="container9" x-bind:style="selected == 9 ? 'max-height: ' + $refs.container9.scrollHeight + 'px' : ''">
+                        
+                        </ul>
+                    </li>
+                    <li class="mb-5 iq-sidebar">
+                        <a class="dark:text-gray-600 flex items-center px-4 py-2 rounded transition-all cursor-pointer" :class="selected == 10 ? 'bg-blue-500 text-white dark:text-white shadow-active' : 'hover:bg-blue-100 hover:text-blue-500 text-gray-600 dark:hover:text-blue-500 dark:hover:bg-blue-800'" @click="toggle(10)">
+                       
+                            <span class="item-name rtl:pr-4">Icons</span>
+                            <i class="transition-all duration-800 right-icon" x-bind:style="selected == 10 ? 'transform:  rotate(90deg)' : ''">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="rtl:rotate-180" width="18" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                </svg>
+                            </i>
+                        </a>
+                        <ul class="p-0 mb-0 overflow-hidden transition-all duration-800 max-h-0" id="sidebar-icons" x-ref="container10" x-bind:style="selected == 10 ? 'max-height: ' + $refs.container10.scrollHeight + 'px' : ''">
+                     </ul>
+                    </li>
+                
+				
+				</ul>
+            </div>
+
+        </aside>
+
+        <main class="main-content " x-data="{ data: true }">
+            <div class="relative">
+                <!--Nav Start-->
+                <nav class="z-40 flex flex-wrap items-center justify-start py-2 bg-white dark:bg-dark-card">
+                    <div class="absolute justify-end flex-grow-0 hidden w-full bg-white top-12 px-7" id="navbar1">
+                        <ul class="flex mb-2 ml-auto rtl:ml-0 rtl:mr-auto lg:mb-0">
+							 <div class="grid grid-cols-3 mb-6 gap-7">
+                                  <div class="flex items-center justify-center px-4 py-2 border-2 dark:border-gray-700 rounded-lg text-gray-600 cursor-pointer hover:border-gray-500 dark:hover:border-gray-600" id="dark" onclick="darkMode(this.id)">
+                                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M9,2C7.95,2 6.95,2.16 6,2.46C10.06,3.73 13,7.5 13,12C13,16.5 10.06,20.27 6,21.54C6.95,21.84 7.95,22 9,22A10,10 0 0,0 19,12A10,10 0 0,0 9,2Z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-2 rtl:mr-2 font-semibold"> Dark </span>
+                                    </div>
+                                    <div class="flex items-center justify-center px-4 py-2 border-2 dark:border-gray-700 rounded-lg text-gray-600 cursor-pointer hover:border-gray-500 dark:hover:border-gray-600" id="light" onclick="darkMode(this.id)">
+                                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-2 rtl:mr-2 font-semibold"> Light</span>
+                                    </div>
+                                </div>
+
+                            <li class="nav-item dropdown" x-data="{ open: false }">
+                                <a href="#" class="block p-2 group" @click="open = ! open">
+                                    <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark:text-white text-gray-600 hover:text-gray-700 group group-focus:text-gray-700">
+                                        <path d="M19.7695 11.6453C19.039 10.7923 18.7071 10.0531 18.7071 8.79716V8.37013C18.7071 6.73354 18.3304 5.67907 17.5115 4.62459C16.2493 2.98699 14.1244 2 12.0442 2H11.9558C9.91935 2 7.86106 2.94167 6.577 4.5128C5.71333 5.58842 5.29293 6.68822 5.29293 8.37013V8.79716C5.29293 10.0531 4.98284 10.7923 4.23049 11.6453C3.67691 12.2738 3.5 13.0815 3.5 13.9557C3.5 14.8309 3.78723 15.6598 4.36367 16.3336C5.11602 17.1413 6.17846 17.6569 7.26375 17.7466C8.83505 17.9258 10.4063 17.9933 12.0005 17.9933C13.5937 17.9933 15.165 17.8805 16.7372 17.7466C17.8215 17.6569 18.884 17.1413 19.6363 16.3336C20.2118 15.6598 20.5 14.8309 20.5 13.9557C20.5 13.0815 20.3231 12.2738 19.7695 11.6453Z" fill="currentColor"></path>
+                                        <path opacity="0.4" d="M14.0088 19.2283C13.5088 19.1215 10.4627 19.1215 9.96275 19.2283C9.53539 19.327 9.07324 19.5566 9.07324 20.0602C9.09809 20.5406 9.37935 20.9646 9.76895 21.2335L9.76795 21.2345C10.2718 21.6273 10.8632 21.877 11.4824 21.9667C11.8123 22.012 12.1482 22.01 12.4901 21.9667C13.1083 21.877 13.6997 21.6273 14.2036 21.2345L14.2026 21.2335C14.5922 20.9646 14.8734 20.5406 14.8983 20.0602C14.8983 19.5566 14.4361 19.327 14.0088 19.2283Z" fill="currentColor"></path>
+                                    </svg>
+                                    <span class="bg-danger dots"></span>
+                                </a>
+                                <div x-show="open" class="absolute z-40 p-0 rounded top-14 w-80 r-40 " @click.outside="open = false" x-transition:enter="transition ease-in duration-500" x-transition:enter-start="opacity-0 transform translate-y-16" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-0">
+                                    <div class="relative flex flex-col m-0 bg-white shadow-lg right-64 rounded-t-lg rounded-b-lg dark:bg-dark-card">
+                                        <div class="flex justify-between px-5 py-3 bg-blue-500 rounded-t">
+                                            <div class="text-base text-left text-white">
+                                                <h5 class="mb-0 text-xl font-medium text-white">All Notifications</h5>
+                                            </div>
+                                        </div>
+                                        <div class="flex-auto p-0">
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/hero.png" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">kong</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600 LR">95 MB</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600">Just Now</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/Braids%20For%20Men_%20A%20Guide%20To%20All%20Types%20Of%20Braided%20Hairstyles%20For%202021%20(1).jpg" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">New customer is join</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600">Brayo</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600 LR">5 days ago</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/10%20cuentas%20de%20youtube%20para%20aprender%20a%20maquillarte%20en%20casa%20paso%20a%20paso.jpg" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">Two customer is left</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600">Mary</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600 LR">2 days ago</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3  hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/I%20could%20use%20Juvia's%20Place%20Mini%20Magic%20palette,%20and%E2%80%A6.jpg" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">New Mail from Fenny</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600">Brenda</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600 LR">3 days ago</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                
+									</div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown" x-data="{ open: false }">
+                                <a href="#" class="block p-2 group" @click="open = !open">
+                                    <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark:text-white text-gray-600 hover:text-gray-700 group group-focus:text-gray-700">
+                                        <path opacity="0.4" d="M22 15.94C22 18.73 19.76 20.99 16.97 21H16.96H7.05C4.27 21 2 18.75 2 15.96V15.95C2 15.95 2.006 11.524 2.014 9.298C2.015 8.88 2.495 8.646 2.822 8.906C5.198 10.791 9.447 14.228 9.5 14.273C10.21 14.842 11.11 15.163 12.03 15.163C12.95 15.163 13.85 14.842 14.56 14.262C14.613 14.227 18.767 10.893 21.179 8.977C21.507 8.716 21.989 8.95 21.99 9.367C22 11.576 22 15.94 22 15.94Z" fill="currentColor"></path>
+                                        <path d="M21.4759 5.67351C20.6099 4.04151 18.9059 2.99951 17.0299 2.99951H7.04988C5.17388 2.99951 3.46988 4.04151 2.60388 5.67351C2.40988 6.03851 2.50188 6.49351 2.82488 6.75151L10.2499 12.6905C10.7699 13.1105 11.3999 13.3195 12.0299 13.3195C12.0339 13.3195 12.0369 13.3195 12.0399 13.3195C12.0429 13.3195 12.0469 13.3195 12.0499 13.3195C12.6799 13.3195 13.3099 13.1105 13.8299 12.6905L21.2549 6.75151C21.5779 6.49351 21.6699 6.03851 21.4759 5.67351Z" fill="currentColor"></path>
+                                    </svg>
+                                    <span class="bg-primary count-mail"></span>
+                                </a>
+                                <div x-show="open" class="absolute z-40 p-0 rounded top-14 w-80 r-72" @click.outside="open = false" x-transition:enter="transition ease-in duration-500" x-transition:enter-start="opacity-0 transform translate-y-16" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-0">
+                                    <div class="relative flex flex-col m-0 bg-white shadow-lg right-64 rounded-t-lg rounded-b-lg dark:text-gray-600 dark:bg-dark-card">
+                                        <div class="flex justify-between px-5 py-3 bg-blue-500 rounded-t">
+                                            <div class="text-base text-left text-white">
+                                                <h5 class="mb-0 text-xl font-medium text-white">All Message</h5>
+                                            </div>
+                                        </div>
+                                         <div class="flex-auto p-0">
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/hero.png" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Kong</h6>
+                                                                    <small class="LR float-start text-sm text-gray-500 dark:text-gray-600">13 Jun</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/10%20cuentas%20de%20youtube%20para%20aprender%20a%20maquillarte%20en%20casa%20paso%20a%20paso.jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Mary Atieno</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">20 Apr</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/Braid%20Styles%20For%20Natural%20Hair%20Growth%20On%20All%20Hair%20Types%20For%20Black%20Women.jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Why do we use it ?</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">30 Jun</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/70%20Best%20Black%20Braided%20Hairstyles%20That%20Turn%20Heads.jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Variations Passages</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">12 Sep</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/Braids%20For%20Men_%20A%20Guide%20To%20All%20Types%20Of%20Braided%20Hairstyles%20For%202021%20(1).jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Brian</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">5 Dec</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                               
+									</div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown" x-data="{ open: false }">
+                                <a class="flex items-center px-2 py-0" href="#" @click="open = !open">
+                                    <img src="../assets/images/magezi.png" alt="User-Profile" class="max-w-full rounded-full " height="50px" width="50px">
+                                    <div class="hidden ml-4 rtl:ml-0 rtl:mr-4 md:block">
+                                        <h6 class="mb-0 text-base font-medium dark:text-gray-600 ">Calvin Magezi</h6>
+                                        <p class="mb-0 caption-sub-title text-gray-500 dark:text-white">Admin</p>
+                                    </div>
+                                </a>
+                                <ul x-show="open" class="absolute z-40 w-40 p-0 py-2 bg-white right-0" @click.outside="open = false" x-transition:enter="transition ease-in duration-500" x-transition:enter-start="opacity-0 transform translate-y-16" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-0">
+                                    <li><a class="block w-full px-4 py-1 focus:bg-blue-500 focus:text-white font-normal text-gray-700 rounded-t whitespace-nowrap" href="adminprofile.html">Profile</a></li>
+                                  
+                                    <li><a class="block w-full px-4 py-1 pt-2 focus:bg-blue-500 focus:text-white font-normal text-gray-700 rounded-b whitespace-nowrap" href="sign-up.html">Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="w-full px-7 ">
+                        <div class="relative flex items-center justify-between ">
+                            <div class="absolute right-0 flex items-center px-2 py-1 text-xl border border-gray-500 rounded lg:hidden">
+                                <!-- Mobile menu button-->
+                                <button type="button" class="inline-flex items-center justify-center text-xl text-gray-500 rounded" onclick="toggleNavbar('navbar1', 'cancel', 'mobileicon')" aria-controls="mobile-menu" aria-expanded="false">
+                                    <span class="sr-only">Open main menu</span>
+                                    <svg class="block w-8 h-8" id="mobileicon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                                    </svg>
+                                    <svg class="hidden w-6 h-6" id="cancel" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" fill="gray">
+                                        <path d="M.293.293a1 1 0 011.414 0L8 6.586 14.293.293a1 1 0 111.414 1.414L9.414 8l6.293 6.293a1 1 0 01-1.414 1.414L8 9.414l-6.293 6.293a1 1 0 01-1.414-1.414L6.586 8 .293 1.707a1 1 0 010-1.414z">
+                                        </path>
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="flex items-center justify-start flex-1 lg:justify-center sm:items-stretch ">
+                                <div class="flex items-center xl:hidden">
+                                    <div class="p-1 mr-4 text-white bg-blue-500 shadow-md top-5 rounded-2xl" data-toggle="sidebar" data-active="true">
+                                        <i class="flex items-center">
+                                            <svg width="20px" height="20px" viewBox="0 0 24 24">
+                                                <path fill="currentColor" d="M4,11V13H16L10.5,18.5L11.92,19.92L19.84,12L11.92,4.08L10.5,5.5L16,11H4Z">
+                                                </path>
+                                            </svg>
+                                        </i>
+                                    </div>
+                                  <img src="../assets/images/logo.png" style="width: 40px;">
+                                    <a class="m-0 mb-0 ml-4 text-2xl font-semibold opacity-100;" href="#">
+                                         hotel
+                                    </a>
+                                </div>
+
+
+                                <div class="relative xl:flex items-center text-gray-500 hidden dark:text-gray-600">
+                                    <svg class="w-5 h-5 absolute left-3 pointer-events-none" width="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="11.7669" cy="11.7666" r="8.98856" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></circle>
+                                        <path d="M18.0186 18.4851L21.5426 22" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    </svg>
+                                    <input type="search" class="dark:bg-dark-card focus:shadow-lg rounded pr-3 pl-10 py-2 border placeholder-gray-600 dark:border-gray-700 outline-none w-full focus:border-blue-500" name="search" placeholder="Search..." autocomplete="off" aria-label="Search...">
+                                </div>
+
+                                <div class="hidden lg:flex lg:flex-grow transition-all duration-700 ease-in-out">
+                                    <ul class="flex mb-2 ml-auto rtl:ml-0 rtl:mr-auto lg:mb-0">
+										 <div class="grid grid-cols-3 mb-6 gap-7">
+                                  <div class="flex items-center justify-center px-4 py-2 border-2 dark:border-gray-700 rounded-lg text-gray-600 cursor-pointer hover:border-gray-500 dark:hover:border-gray-600" id="dark" onclick="darkMode(this.id)">
+                                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M9,2C7.95,2 6.95,2.16 6,2.46C10.06,3.73 13,7.5 13,12C13,16.5 10.06,20.27 6,21.54C6.95,21.84 7.95,22 9,22A10,10 0 0,0 19,12A10,10 0 0,0 9,2Z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-2 rtl:mr-2 font-semibold"> Dark </span>
+                                    </div>
+                                    <div class="flex items-center justify-center px-4 py-2 border-2 dark:border-gray-700 rounded-lg text-gray-600 cursor-pointer hover:border-gray-500 dark:hover:border-gray-600" id="light" onclick="darkMode(this.id)">
+                                        <svg width="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path fill="currentColor" d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8M12,18A6,6 0 0,1 6,12A6,6 0 0,1 12,6A6,6 0 0,1 18,12A6,6 0 0,1 12,18M20,8.69V4H15.31L12,0.69L8.69,4H4V8.69L0.69,12L4,15.31V20H8.69L12,23.31L15.31,20H20V15.31L23.31,12L20,8.69Z">
+                                            </path>
+                                        </svg>
+                                        <span class="ml-2 rtl:mr-2 font-semibold"> Light</span>
+                                    </div>
+                                </div>
+
+                                       <li class="nav-item dropdown" x-data="{ open: false }">
+                                            <a href="#" class="block p-2 group" @click="open = ! open">
+                                                <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark:text-white text-gray-600 hover:text-gray-700 group group-focus:text-gray-700">
+                                                    <path d="M19.7695 11.6453C19.039 10.7923 18.7071 10.0531 18.7071 8.79716V8.37013C18.7071 6.73354 18.3304 5.67907 17.5115 4.62459C16.2493 2.98699 14.1244 2 12.0442 2H11.9558C9.91935 2 7.86106 2.94167 6.577 4.5128C5.71333 5.58842 5.29293 6.68822 5.29293 8.37013V8.79716C5.29293 10.0531 4.98284 10.7923 4.23049 11.6453C3.67691 12.2738 3.5 13.0815 3.5 13.9557C3.5 14.8309 3.78723 15.6598 4.36367 16.3336C5.11602 17.1413 6.17846 17.6569 7.26375 17.7466C8.83505 17.9258 10.4063 17.9933 12.0005 17.9933C13.5937 17.9933 15.165 17.8805 16.7372 17.7466C17.8215 17.6569 18.884 17.1413 19.6363 16.3336C20.2118 15.6598 20.5 14.8309 20.5 13.9557C20.5 13.0815 20.3231 12.2738 19.7695 11.6453Z" fill="currentColor"></path>
+                                                    <path opacity="0.4" d="M14.0088 19.2283C13.5088 19.1215 10.4627 19.1215 9.96275 19.2283C9.53539 19.327 9.07324 19.5566 9.07324 20.0602C9.09809 20.5406 9.37935 20.9646 9.76895 21.2335L9.76795 21.2345C10.2718 21.6273 10.8632 21.877 11.4824 21.9667C11.8123 22.012 12.1482 22.01 12.4901 21.9667C13.1083 21.877 13.6997 21.6273 14.2036 21.2345L14.2026 21.2335C14.5922 20.9646 14.8734 20.5406 14.8983 20.0602C14.8983 19.5566 14.4361 19.327 14.0088 19.2283Z" fill="currentColor"></path>
+                                                </svg>
+                                                <span class="bg-danger dots"></span>
+                                            </a>
+                                            <div x-show="open" class="absolute z-40 p-0 top-14 w-80 right-80" @click.outside="open = false" x-transition:enter="transition ease-in duration-500" x-transition:enter-start="opacity-0 transform translate-y-16" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-0">
+                                                <div class="relative flex flex-col m-0 bg-white shadow-lg rounded-b-lg rounded-t-lg dark:bg-dark-card ">
+                                                    <div class="flex justify-between px-5 py-3 bg-blue-500 rounded-t-lg ">
+                                                        <div class="text-base text-left text-white">
+                                                            <h5 class="mb-0 text-xl font-medium text-white">All Notifications</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-auto p-0">
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/hero.png" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">kong</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600 LR">95 MB</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600">Just Now</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/Braids%20For%20Men_%20A%20Guide%20To%20All%20Types%20Of%20Braided%20Hairstyles%20For%202021%20(1).jpg" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">New customer is join</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600">Brayo</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600 LR">5 days ago</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/10%20cuentas%20de%20youtube%20para%20aprender%20a%20maquillarte%20en%20casa%20paso%20a%20paso.jpg" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">Two customer is left</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600">Mary</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600 LR">2 days ago</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3  hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/I%20could%20use%20Juvia's%20Place%20Mini%20Magic%20palette,%20and%E2%80%A6.jpg" alt="">
+                                                                <div class="w-full ml-3 rtl:ml-0 rtl:mr-3">
+                                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">New Mail from Fenny</h6>
+                                                                    <div class="flex items-center justify-between">
+                                                                        <p class="mb-0 text-lg text-gray-500 dark:text-gray-600">Brenda</p>
+                                                                        <small class="float-end text-sm text-gray-500 dark:text-gray-600 LR">3 days ago</small>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                                
+												</div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown" x-data="{ open: false }">
+                                            <a href="#" class="block p-2 group" @click="open = !open">
+                                                <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="dark:text-white text-gray-600 hover:text-gray-700 group group-focus:text-gray-700">
+                                                    <path opacity="0.4" d="M22 15.94C22 18.73 19.76 20.99 16.97 21H16.96H7.05C4.27 21 2 18.75 2 15.96V15.95C2 15.95 2.006 11.524 2.014 9.298C2.015 8.88 2.495 8.646 2.822 8.906C5.198 10.791 9.447 14.228 9.5 14.273C10.21 14.842 11.11 15.163 12.03 15.163C12.95 15.163 13.85 14.842 14.56 14.262C14.613 14.227 18.767 10.893 21.179 8.977C21.507 8.716 21.989 8.95 21.99 9.367C22 11.576 22 15.94 22 15.94Z" fill="currentColor"></path>
+                                                    <path d="M21.4759 5.67351C20.6099 4.04151 18.9059 2.99951 17.0299 2.99951H7.04988C5.17388 2.99951 3.46988 4.04151 2.60388 5.67351C2.40988 6.03851 2.50188 6.49351 2.82488 6.75151L10.2499 12.6905C10.7699 13.1105 11.3999 13.3195 12.0299 13.3195C12.0339 13.3195 12.0369 13.3195 12.0399 13.3195C12.0429 13.3195 12.0469 13.3195 12.0499 13.3195C12.6799 13.3195 13.3099 13.1105 13.8299 12.6905L21.2549 6.75151C21.5779 6.49351 21.6699 6.03851 21.4759 5.67351Z" fill="currentColor"></path>
+                                                </svg>
+                                                <span class="bg-primary count-mail"></span>
+                                            </a>
+                                            <div x-show="open" class="absolute z-40 p-0 rounded top-14 w-80 right-72" @click.outside="open = false" x-transition:enter="transition ease-in duration-500" x-transition:enter-start="opacity-0 transform translate-y-16" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-0">
+                                                <div class="relative flex flex-col m-0 bg-white shadow-lg rounded-t-lg rounded-b-lg dark:text-gray-600 dark:bg-dark-card">
+                                                    <div class="flex justify-between px-5 py-3 bg-blue-500 rounded-t">
+                                                        <div class="text-base text-left text-white">
+                                                            <h5 class="mb-0 text-xl font-medium text-white">All Message</h5>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex-auto p-0">
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/hero.png" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Kong</h6>
+                                                                    <small class="LR float-start text-sm text-gray-500 dark:text-gray-600">13 Jun</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/10%20cuentas%20de%20youtube%20para%20aprender%20a%20maquillarte%20en%20casa%20paso%20a%20paso.jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Mary Atieno</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">20 Apr</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/Braid%20Styles%20For%20Natural%20Hair%20Growth%20On%20All%20Hair%20Types%20For%20Black%20Women.jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Why do we use it ?</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">30 Jun</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 border-b dark:border-gray-700 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/70%20Best%20Black%20Braided%20Hairstyles%20That%20Turn%20Heads.jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Variations Passages</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">12 Sep</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                        <a href="#" class="inline-block w-full px-5 py-3 hover:bg-indigo-100 group">
+                                                            <div class="flex items-center">
+                                                                <div class="">
+                                                                    <img class="w-10 h-10 p-1 text-blue-400 bg-blue-100 rounded-full dark:bg-blue-800 group-hover:bg-blue-200" src="../assets/images/Braids%20For%20Men_%20A%20Guide%20To%20All%20Types%20Of%20Braided%20Hairstyles%20For%202021%20(1).jpg" alt="">
+                                                                </div>
+                                                                <div class="ml-3 rtl:ml-0 rtl:mr-3 LR">
+                                                                    <h6 class="mb-0 text-base font-medium">Brian</h6>
+                                                                    <small class="float-start text-sm text-gray-500 dark:text-gray-600">5 Dec</small>
+                                                                </div>
+                                                            </div>
+                                                        </a>
+                                                    </div>
+                                               
+												</div>
+                                            </div>
+                                        </li>
+                                        <li class="nav-item dropdown" x-data="{ open: false }">
+                                            <a class="flex items-center px-2 py-0" href="#" @click="open = !open">
+                                                <img src="../assets/images/magezi.png" alt="User-Profile" class="max-w-full rounded-full " height="50px" width="50px">
+                                                <div class="hidden ml-4 rtl:ml-0 rtl:mr-4 md:block">
+                                                    <h6 class="mb-0 text-base font-medium dark:text-gray-600">Calvin Magezi</h6>
+                                                    <p class="mb-0 caption-sub-title text-lg text-gray-600 dark:text-white">Admin</p>
+                                                </div>
+                                            </a>
+                                            <ul x-show="open" class="absolute z-40 w-40 p-0 py-2 bg-white right-0 rounded dark:bg-dark-card" @click.outside="open = false" x-transition:enter="transition ease-in duration-500" x-transition:enter-start="opacity-0 transform translate-y-16" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-out duration-500" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform translate-y-0">
+                                                <li><a class="block w-full px-4 py-1 focus:bg-blue-500 focus:text-white text-lg text-gray-600 rounded-t whitespace-nowrap hover:text-blue-500 " href="adminprofile.html">Profile</a></li>
+                                             
+                                                <li><a class="block w-full px-4 py-1 pt-2 focus:bg-blue-500 focus:text-white text-lg text-gray-600 rounded-b whitespace-nowrap  hover:text-blue-500" href="sign-in.html">Logout</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+
+                <div class="text-white" style="height: 50vh;background: linear-gradient(rgba(25, 103, 209, 0.3),rgba(0,0,0,0.1)), url(../assets/images/banner/AP120521026936_0.jpg);background-size: cover;">
+                    <div class="w-full p-8">
+                        <div class="row">
+                            <div class="px-4 col-md-12">
+                                <div class=" text-center">
+                                    <div >
+                                        <h1 class="text-4xl mb-12  font-medium">MAGEZI 5 STAR HOTEL</h1>
+                                       <img src="../assets/images/icons/90665-food-order-app.gif" style="width: 160px;margin: 0 auto;border-radius: 100%;" >
+                                    </div>
+                                   
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="absolute top-0 lg:h-64 h-72" style="z-index: -1;">
+                        <img src="../assets/images/dashboard/top-header.png" alt="header" class="object-cover w-screen h-full rounded-2xl">
+                    </div>
+                </div>
+                <!--Nav End-->
+            </div>
+<!--           start of content-->
+			
+		 <div class="p-6 py-0 lg:p-10 lg:py-0 md:-mt-14 container-fluid">
+                <div class="flex flex-wrap" x-data="{ openTab: 1 }">
+                    <div class="flex-auto w-full">
+                        <div class="relative flex flex-col mb-8 text-gray-500 bg-white shadow-lg rounded-xl">
+                            <div class="flex-auto p-6">
+                                <div class="flex flex-wrap items-center justify-between">
+                                    <div class="flex flex-wrap items-center">
+                                        <div class="relative mb-4 mr-4 -mt-20 lg:top-0 top-5 lg:mb-0 profile-logo profile-logo1">
+                                            <img src="../assets/images/magezi.png" class="w-24 h-24 border-4 rounded-full" alt="profile-image">
+                                        </div>
+                                        <div class="flex flex-wrap items-center mb-0 md:mb-4">
+                                            <h4 class="mr-2 text-2xl font-medium text-black">Edit Admin</h4>
+                                            <span> - Calvin Magezi</span>
+                                        </div>
+                                    </div>
+                                  
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flex-auto w-full lg:w-1/4 xl:pr-3 lg:pr-1 ">
+                        <div class="relative flex flex-col mb-8 text-gray-500 bg-white shadow-lg rounded-xl">
+                            <div class="p-6 pb-0">
+                                <div class="header-title">
+                                    <h4 class="text-2xl font-medium text-black">Admin's Details</h4>
+                                </div>
+                            </div>
+                            <div class="flex-auto p-6 ">
+                                 <ul class="p-0 m-0 list-inline">
+                                    <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>First Name.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - Calvin </p>
+                                    </li>
+									 <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Second Name.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - Magezi </p>
+                                    </li>
+									 <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Occupation.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - Admin </p>
+                                    </li>
+									 <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Status.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> <span class="ml-4 inline-block whitespace-nowrap px-2 py-0.5 text-xs text-center font-bold leading-none text-white bg-red-500 rounded">Online</span> </p>
+                                    </li>
+									
+									 <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Telephone.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - +256 712345678 </p>
+                                    </li>
+									<li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Salary.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> <span class="ml-4 inline-block whitespace-nowrap px-2 py-0.5 text-xs text-center font-bold leading-none text-white bg-blue-500 rounded">$ 1200</span> </p>
+                                    </li>
+									 <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Enrolled-In.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - 2021/01/07 </p>
+                                    </li>
+									 <li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Enrolled-Out</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - Still Working </p>
+                                    </li>
+									<li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Payment.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> <span class="ml-4 inline-block whitespace-nowrap px-2 py-0.5 text-xs text-center font-bold leading-none text-white bg-green-500 rounded">Fully Paid</span> </p>
+                                    </li>
+									<li class="flex mb-2">
+                                        <div class="mr-4 text-gray-600">
+                                            <h5>Resident.</h5>
+                                        </div>
+                                        <p class="mb-0 news-detail"> - Nairobi </p>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                   </div>
+					
+					     <div class="flex-auto w-full lg:w-3/4 lg:pl-3 ">
+                        <div class="relative flex flex-col mb-8 text-gray-500 bg-white shadow-lg rounded-xl">
+                            <div class="flex justify-between flex-auto p-6 pb-0">
+                                <div class="header-title">
+                                    <h4 class="text-2xl font-medium text-black">Edit Admin's Information</h4>
+                                </div>
+                            </div>
+                            <div class="p-6 ">
+                                <div>
+                                    <form>
+                                        <div class="flex flex-wrap">
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pr-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="fname">First name:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="fname" value="Calvin">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pl-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="lname">Second name:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="lname" value="Magezi">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pr-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="add1">Occupation:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="occup" value="Admin">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pl-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="add2">Status:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="status" value="Online">
+                                            </div>
+											 <div class="mb-4 md:w-2/4 md:flex-auto md:pr-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="add1">Telephone:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="tel" value="+254 712345678">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pl-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="add2">Email:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="email" value="calvinmagezi@gmail.com">
+                                            </div>
+                                            <div class="mb-4 md:w-full md:flex-auto">
+                                                <label class="inline-block mb-2 text-gray-500" for="cname">Salary $:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="salary" placeholder="1200">
+                                            </div>
+                                         
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pr-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="mobno">Enrolled-in:</label>
+                                                <input type="date" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="check-in" value="01/05/2022">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pl-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="altconno">Enrolled-Out:</label>
+                                                <input type="date" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="check-out" value="">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pr-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="email">Payment:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="pay" value="Fully Paid">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pl-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="pno">Resident:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="resident" value="Nairobi">
+                                            </div>
+                                        </div>
+                                        <hr class="my-4">
+                                        <h5 class="mb-4 text-xl font-medium text-black">Security</h5>
+                                        <div class="flex flex-wrap">
+                                            <div class="mb-4 md:w-full md:flex-auto">
+                                                <label class="inline-block mb-2 text-gray-500" for="uname">User Name:</label>
+                                                <input type="text" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="uname" placeholder="User Name">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pr-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="pass">Password:</label>
+                                                <input type="password" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="pass" placeholder="Password">
+                                            </div>
+                                            <div class="mb-4 md:w-2/4 md:flex-auto md:pl-3 ">
+                                                <label class="inline-block mb-2 text-gray-500" for="rpass">Repeat Password:</label>
+                                                <input type="password" class="block w-full px-4 py-2 placeholder-gray-600 text-base font-normal bg-white border rounded outline-none focus:border-blue-500 focus:shadow" id="rpass" placeholder="Repeat Password ">
+                                            </div>
+                                        </div>
+                                      
+                                        <button type="submit" class="inline-block p-2 px-6 py-2 text-base font-normal text-center text-white transition-all duration-500 ease-in-out bg-blue-500 border border-blue-500 rounded shadow-md hover:shadow-md hover:bg-blue-600 hover:text-white">Update Employee</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+					
+					
+					
+					
+					
+              </div>
+            </div>
+            
+			
+<!--           end of content-->
+			
+		
+			
+			
+			
+			
+           <footer class="bottom-0 flex justify-between w-full py-2 text-sm bg-white dark:bg-dark-card px-11">
+                <ul class="p-0 mb-0 left-panel list-inline">
+                    <li class="inline-block mr-2 text-blue-500 dark:text-gray-600"><a href="#">Privacy Policy</a></li>
+                    <li class="inline-block mr-2 text-blue-500 dark:text-gray-600"><a href="#">Terms of Use</a></li>
+                </ul>
+                <div class="flex right-panel text-gray-500 dark:text-gray-600 text-base">
+                    ©<script>
+                        document.write(new Date().getFullYear())
+                    </script> Magezi-tech-hotel
+               
+                </div>
+            </footer>
+        </main>
+
+     
+        <!-- External Library Bundle Script -->
+        <script src="../assets/js/external.min.js"></script>
+
+     
+        <!-- App Script -->
+        <script src="../assets/js/script.js"></script>
+
+        <!-- Alpine Js-->
+        <script src="../assets/js/alpine.js"></script>
+
+    
+    </div>
+</body>
+
+
+</html>
